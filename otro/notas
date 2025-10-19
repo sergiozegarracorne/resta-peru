@@ -1,0 +1,5 @@
+npm run dev
+
+go run main.go
+
+ python -m http.server 8000 

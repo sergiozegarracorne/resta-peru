@@ -1,0 +1,75 @@
+/* src/app/styles/layout.module.css */
+
+/*
+  Este contenedor se asegura de que el contenido principal
+  ocupe toda la pantalla y lo centra.
+*/
+.viewportContainer {
+
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  background-color: #000; /* Color de fondo para las barras negras si es necesario */
+  overflow: hidden; /* Evita barras de scroll indeseadas */
+}
+
+/*
+  Este es nuestro "lienzo" con la resolución fija.
+  Aquí usaremos 1024x768 como base.
+*/
+.fixedResolutionWrapper {
+  width: 1024px;
+  height: 768px;
+  background-color: #fff; /* O el color de fondo de tu app */
+  transform-origin: top left;
+  position: relative; /* Contexto para posicionamiento absoluto si es necesario */
+  flex-direction: column;
+}
+
+/* --- Nuevos Estilos para la Barra de Título --- */
+
+.titleBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  height: 40px;
+  background-color: #1a202c; /* Un color oscuro para la barra */
+  color: #fff;
+  flex-shrink: 0; /* Evita que la barra se encoja */
+}
+
+.title h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin: 0;
+}
+.title h3 {
+    font-size: 0.8em;
+    font-weight: 600;
+    margin: 0;
+  }
+
+.dateTimeContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Espacio entre fecha y hora */
+  font-size: 0.8em;
+}
+
+/* --- Nueva clase para la hora --- */
+.timeDisplay {
+  font-variant-numeric: tabular-nums;
+  /* Opcional: alinear a la derecha para que el cambio sea menos perceptible si no usas tabular-nums */
+  /* text-align: right; */
+}
+
+.mainContent {
+  flex-grow: 1; /* Ocupa el resto del espacio */
+  overflow-y: auto; /* Permite scroll solo en el área de contenido */
+  padding: 5px 10px; /* Relleno solo a los lados */
+}
+
+.date{    
+    text-transform: capitalize;
+}

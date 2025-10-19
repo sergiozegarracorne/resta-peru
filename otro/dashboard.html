@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - Protegido</title>
+  <style>
+    body { font-family: Arial; background: #eef2f5; padding: 20px; }
+    .header { display: flex; justify-content: space-between; align-items: center; background: #007BFF; color: white; padding: 10px 20px; border-radius: 8px; }
+    button { padding: 5px 10px; background: #ff4d4d; border: none; color: white; cursor: pointer; }
+    button:hover { background: #cc0000; }
+    .content { margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      Bienvenido, <span id="userEmail"></span>
+    </div>
+    <button id="logoutBtn">Cerrar sesión</button>
+  </div>
+
+  <div class="content">
+    <h2>Área Privada</h2>
+    <p>Esta sección solo se muestra si el usuario está logeado.</p>
+  </div>
+
+  <script>
+    // ✅ Verificar autenticación al cargar la página
+    const token = localStorage.getItem('auth_token');
+    const email = localStorage.getItem('user_email');
+
+    if (!token) {
+      // No hay token → regresar al login
+      window.location.href = 'login.html';
+    } else {
+      // Mostrar email en la cabecera
+      document.getElementById('userEmail').textContent = email || 'Usuario';
+    }
+
+    // 🔴 Botón de logout
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('user_email');
+      window.location.href = 'login.html';
+    });
+  </script>
+
+</body>
+</html>

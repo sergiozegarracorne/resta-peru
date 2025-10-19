@@ -1,0 +1,6 @@
+# .gitignore
+
+# ... (otras reglas que ya tengas)
+
+# Variables de entorno
+.env
