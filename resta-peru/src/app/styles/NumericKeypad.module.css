@@ -1,0 +1,39 @@
+/* src/app/styles/NumericKeypad.module.css */
+
+.keypadContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  width: 300px; /* Ancho del teclado */
+  margin-top: 15px;
+}
+
+.key {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 2rem; /* Números grandes */
+  font-weight: bold;
+  padding: 20px 0; /* Botones altos */
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: #333;
+}
+
+.key:active {
+  background-color: #dcdcdc;
+}
+
+.keyDelete {
+  background-color: #ffcdd2; /* Rojo claro */
+  font-size: 1.2rem;
+}
+
+.keyEnter {
+  background-color: #c8e6c9; /* Verde claro */
+  font-size: 1.2rem;
+  grid-column: span 1; /* Opcional: hacer que ocupe más espacio */
+}

@@ -4,6 +4,7 @@ import "./globals.css";
 import ResolutionWrapper from "@/componentsSections/ResolutionWrapper"; // Ajusta la ruta si es necesario
 import TitleBar from "@/componentsSections/TitleBar";
 import styles from '@/styles/Layout.module.css';
+import CustomCursor from "@/componentsUI/CustomCursor";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,11 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={inter.className}>
+      <body className={inter.className + " viewportContainer"} >
+    {/*  <CustomCursor />*/}
         {/* El ResolutionWrapper ahora contiene la estructura completa */}
-        <ResolutionWrapper>
-          <TitleBar title="Lista de Vendedores" />
-          <main className={styles.mainContent}>
+        <ResolutionWrapper >
+          <TitleBar title="SELECCION DE VENDEDORES" />
+          <main className={styles.mainContent   }>
             {children}
           </main>
         </ResolutionWrapper>

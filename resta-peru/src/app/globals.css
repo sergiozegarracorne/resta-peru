@@ -1,7 +1,8 @@
+@import 'react-calendar/dist/Calendar.css';
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #ffffcc;
   --foreground: #171717;
 }
 
@@ -22,4 +23,28 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* --- ESTILOS DE CURSOR PERSONALIZADO --- */
+/* Oculta el cursor del sistema operativo en toda la aplicación */
+html, body, * {
+ /* cursor: none !important;*/
+
+}
+
+
+/*
+  Este contenedor se asegura de que el contenido principal
+  ocupe toda la pantalla y lo centra.
+*/
+.viewportContainer {
+  display: flex;
+  /* Centra horizontalmente */
+  justify-content: center; 
+  /* Alinea en la parte superior */
+  align-items: flex-start;
+  width: 100vw;
+  height: 100vh;
+  background-color: #707070; /* Color de fondo para las barras negras */
+  overflow: hidden; /* Evita barras de scroll indeseadas */
 }

@@ -5,9 +5,14 @@ import { useState, useEffect } from 'react';
 
 // Añadimos la prop 'width'
 const CurrentTime = ({ width }: { width?: string | number }) => {
-  const [time, setTime] = useState(new Date());
+  // 1. Inicializamos el estado en null. No se renderizará en el servidor.
+  const [time, setTime] = useState<Date | null>(null);
 
   useEffect(() => {
+    // 2. Establecemos la hora inicial tan pronto como el componente se monta en el cliente.
+    setTime(new Date());
+
+    // 3. El intervalo sigue actualizando la hora cada segundo.
     const timerId = setInterval(() => {
       setTime(new Date());
     }, 1000);
@@ -24,7 +29,12 @@ const CurrentTime = ({ width }: { width?: string | number }) => {
     textAlign: 'center', // Puedes cambiarlo a 'right' o 'center'    
   };
 
-  return <span style={timeStyle}>{time.toLocaleTimeString('es-PE')}</span>;
+  // 4. Durante el renderizado del servidor y el primer renderizado del cliente, `time` es null.
+  // Mostramos un placeholder o nada para evitar el mismatch.
+  // Una vez que useEffect se ejecuta, el componente se vuelve a renderizar con la hora correcta.
+  return (
+    <span style={timeStyle}>{time ? time.toLocaleTimeString('es-PE') : '00:00:00'}</span>
+  );
 };
 
 export default CurrentTime;
