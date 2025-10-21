@@ -7,7 +7,7 @@
   padding: 10px;
   background-color: #f0f0f0;
   border-radius: 8px;
-  width: 300px; /* Ancho del teclado */
+  width: 400px; /* Ancho del teclado */
   margin-top: 15px;
 }
 
@@ -24,7 +24,8 @@
 }
 
 .key:active {
-  background-color: #dcdcdc;
+  background-color: #6f00d6;
+  color: #fff;
 }
 
 .keyDelete {

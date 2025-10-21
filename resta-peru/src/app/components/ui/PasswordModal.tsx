@@ -10,11 +10,12 @@ interface PasswordModalProps {
   onClose: () => void;
   onSubmit: (password: string) => void;
   vendorName: string;
+  vendorNumero: string;
 }
 
-const PasswordModal = ({ isOpen, onClose, onSubmit, vendorName }: PasswordModalProps) => {
+const PasswordModal = ({ isOpen, onClose, onSubmit, vendorName, vendorNumero }: PasswordModalProps) => {
   const [password, setPassword] = useState('');
-  const [showKeypad, setShowKeypad] = useState(false);
+  const [showKeypad, setShowKeypad] = useState(true);
 
   if (!isOpen) {
     return null;
@@ -37,14 +38,14 @@ const PasswordModal = ({ isOpen, onClose, onSubmit, vendorName }: PasswordModalP
 
   const handleClose = () => {
     setPassword('');
-    setShowKeypad(false);
+    setShowKeypad(true);
     onClose();
   };
 
   return (
     <div className={styles.modalOverlay} onClick={handleClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <h3>Clave para: {vendorName}</h3>
+        <h3>Acceso: <span className='text-red-800 font-extrabold' >{vendorName.toUpperCase()} </span> [ <span className='text-green-800 font-extrabold' >{vendorNumero}</span> ]</h3>
         
         <div className={styles.inputContainer}>
           <input
