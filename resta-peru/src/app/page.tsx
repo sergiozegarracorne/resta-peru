@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // Importa useRouter
 import VendedorBoton from "@/componentsUI/VendedorBoton";
 import PasswordModal from "@/componentsUI/PasswordModal";
 import vendorsData from "./vendors.json";
+import TitleBar from "./components/sections/TitleBar";
 
 interface Vendor {
   numero: string;
@@ -10,10 +12,10 @@ interface Vendor {
   clave: string;
 }
 
-export default function AboutPage() {
+export default function VendorSelectionPage() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedVendor, setSelectedVendor] = useState<Vendor | null>(null);
-  
+  const router = useRouter(); // Inicializa el router
 
   const handleVendorClick = (vendor: Vendor) => {
     setSelectedVendor(vendor);
@@ -26,8 +28,8 @@ export default function AboutPage() {
       const vendorInData = vendorsData.find(v => v.numero === selectedVendor.numero);
 
       if (vendorInData && vendorInData.clave === password) {
-        alert(`¡Bienvenido ${selectedVendor.nombre}! Acceso concedido.`);
-        // Aquí podrías redirigir al usuario o realizar otra acción
+        // ¡Redirección en caso de éxito!
+        router.push("/dashboard");
       } else {
         alert("Clave incorrecta. Inténtalo de nuevo.");
       }
@@ -38,7 +40,9 @@ export default function AboutPage() {
   // NOTA: El contenedor <main> ya tiene un padding horizontal de 10px
   // definido en `Layout.module.css` (.mainContent), por lo que no es necesario añadir más aquí.
   return (
+    
     <main>
+      <TitleBar title="SELECCIÓN DE VENDEDOR" />  
       {/* Usamos CSS Grid para 8 columnas. */}
       {/* Al eliminar 'justify-items-center', los botones se estirarán para ocupar todo el ancho de su columna. */}
       <div className="grid grid-cols-8 gap-1"> 
