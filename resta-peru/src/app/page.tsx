@@ -29,6 +29,8 @@ export default function VendorSelectionPage() {
 
       if (vendorInData && vendorInData.clave === password) {
         // ¡Redirección en caso de éxito!
+        // Guardamos los datos del vendedor en sessionStorage para usarlos en el dashboard
+        sessionStorage.setItem('currentVendor', JSON.stringify(vendorInData));
         router.push("/dashboard");
       } else {
         alert("Clave incorrecta. Inténtalo de nuevo.");

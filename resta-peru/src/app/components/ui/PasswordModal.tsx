@@ -1,7 +1,7 @@
 // src/app/components/ui/PasswordModal.tsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from '@/styles/PasswordModal.module.css';
 import NumericKeypad from './NumericKeypad';
 
@@ -16,15 +16,40 @@ interface PasswordModalProps {
 const PasswordModal = ({ isOpen, onClose, onSubmit, vendorName, vendorNumero }: PasswordModalProps) => {
   const [password, setPassword] = useState('');
   const [showKeypad, setShowKeypad] = useState(true);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+   // Efecto para auto-enviar la clave al llegar a 6 dígitos
+   useEffect(() => {
+    if (password.length === 6) {
+      onSubmit(password);
+      setPassword(''); // Limpia la contraseña después de enviar
+    }
+    console.log(password);
+    
+  }, [password, onSubmit]);
+
+  // Efecto para enfocar el input cuando el modal se abre
+  useEffect(() => {
+    if (isOpen) {
+      // Limpiamos la contraseña anterior
+      setPassword("");
+      // Enfocamos el input para que el usuario pueda escribir de inmediato
+      setTimeout(() => inputRef.current?.focus(), 100);
+    }
+  }, [isOpen]);
+  
 
   if (!isOpen) {
     return null;
   }
 
   const handleKeyPress = (key: string) => {
+    //console.log(key);
+    
     if (password.length < 6) { // Limita la longitud de la contraseña
       setPassword(password + key);
     }
+
   };
 
   const handleBackspace = () => {
@@ -49,6 +74,7 @@ const PasswordModal = ({ isOpen, onClose, onSubmit, vendorName, vendorNumero }: 
         
         <div className={styles.inputContainer}>
           <input
+            ref={inputRef}
             type="password"
             value={password}
             readOnly // Para forzar el uso del teclado en pantalla
