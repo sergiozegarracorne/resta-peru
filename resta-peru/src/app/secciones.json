@@ -1,0 +1,118 @@
+[
+  {
+    "numero": "1",
+    "nombre": "SECCION 1",
+    "clave": "123456"
+  },
+  {
+    "numero": "2",
+    "nombre": "BEBIDAS",
+    "clave": "234567"
+  },
+  {
+    "numero": "3",
+    "nombre": "ARROCES",
+    "clave": "234567"
+  },
+  {
+    "numero": "4",
+    "nombre": "CARNES",
+    "clave": "234567"
+  },
+  {
+    "numero": "5",
+    "nombre": "SOPAS",
+    "clave": "345678"
+  },
+  {
+    "numero": "6",
+    "nombre": "ENSALADAS",
+    "clave": "456789"
+  },
+  {
+    "numero": "7",
+    "nombre": "POSTRES",
+    "clave": "567890"
+  },
+  {
+    "numero": "8",
+    "nombre": "MARISCOS",
+    "clave": "678901"
+  },
+  {
+    "numero": "9",
+    "nombre": "PESCADOS",
+    "clave": "789012"
+  },
+  {
+    "numero": "10",
+    "nombre": "POLLOS",
+    "clave": "890123"
+  },
+  {
+    "numero": "11",
+    "nombre": "SANDWICHES",
+    "clave": "901234"
+  },
+  {
+    "numero": "12",
+    "nombre": "PASTAS",
+    "clave": "012345"
+  },
+  {
+    "numero": "13",
+    "nombre": "PIZZAS",
+    "clave": "123457"
+  },
+  {
+    "numero": "14",
+    "nombre": "COMBOS",
+    "clave": "234567"
+  },
+  {
+    "numero": "15",
+    "nombre": "CRIOLLOS",
+    "clave": "345679"
+  },
+  {
+    "numero": "16",
+    "nombre": "PARA LLEVAR",
+    "clave": "456790"
+  },
+  {
+    "numero": "17",
+    "nombre": "ALMUERZO EJECUTIVO",
+    "clave": "567891"
+  },
+  {
+    "numero": "18",
+    "nombre": "DESAYUNOS",
+    "clave": "678902"
+  },
+  {
+    "numero": "19",
+    "nombre": "BAR",
+    "clave": "789013"
+  },
+  {
+    "numero": "20",
+    "nombre": "CAFÉ",
+    "clave": "890124"
+  },
+  {
+    "numero": "21",
+    "nombre": "HAMBURGUESAS",
+    "clave": "901235"
+  },
+  {
+    "numero": "22",
+    "nombre": "TABLAS",
+    "clave": "012346"
+  }
+  ,
+  {
+    "numero": "23",
+    "nombre": "OTROS",
+    "clave": "012346"
+  }
+]

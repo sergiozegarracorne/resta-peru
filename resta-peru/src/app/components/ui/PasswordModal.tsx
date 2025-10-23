@@ -22,10 +22,8 @@ const PasswordModal = ({ isOpen, onClose, onSubmit, vendorName, vendorNumero }: 
    useEffect(() => {
     if (password.length === 6) {
       onSubmit(password);
-      setPassword(''); // Limpia la contraseña después de enviar
+      setPassword(''); // Limpia la contraseña después de enviar para consistencia
     }
-    console.log(password);
-    
   }, [password, onSubmit]);
 
   // Efecto para enfocar el input cuando el modal se abre

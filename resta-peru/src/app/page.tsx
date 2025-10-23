@@ -22,15 +22,18 @@ export default function VendorSelectionPage() {
     setModalOpen(true);
   };
 
-  const handlePasswordSubmit = (password: string) => {
+  const handlePasswordSubmit = async (password: string) => {
     if (selectedVendor) {
       // Buscamos al vendedor en nuestros datos para obtener la clave correcta
       const vendorInData = vendorsData.find(v => v.numero === selectedVendor.numero);
 
       if (vendorInData && vendorInData.clave === password) {
         // ¡Redirección en caso de éxito!
-        // Guardamos los datos del vendedor en sessionStorage para usarlos en el dashboard
+        // 1. Guardamos los datos del vendedor en sessionStorage para usarlos en el dashboard
         sessionStorage.setItem('currentVendor', JSON.stringify(vendorInData));
+        // 2. ¡IMPORTANTE! Creamos una cookie para que el middleware pueda verificar la sesión.
+        //    El valor puede ser simple, solo para indicar que hay una sesión activa.
+        document.cookie = "auth_token=true; path=/; max-age=86400"; // Cookie válida por 1 día
         router.push("/dashboard");
       } else {
         alert("Clave incorrecta. Inténtalo de nuevo.");
