@@ -15,7 +15,7 @@ const SeccionBoton = ({ numero, nombre, type = "button", ...props }: SeccionBoto
   return (
     // Cambiamos el <div> por un <button> y le pasamos el `type` y el resto de props.
     <button  type={type} className={styles.container } {...props}>
-      <div role="button" className={styles.numero }>{nombre}</div>
+      <div className={styles.numero }>{nombre}</div>      
     </button>
   );
 };

@@ -4,15 +4,40 @@ import { useMemo, useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import SeccionBoton from "@/componentsUI/SeccionBoton";
 
-type Elemento = { numero: string | number; nombre: string };
+type Elemento = { numero: string | number; nombre: string; clave: string};
 type PaginadorProps = {
   elementos: Elemento[];
   columnas?: number;    // columnas visibles
   filas?: number;       // filas visibles por página
   espaciado?: string;   // tailwind gap (e.g., "gap-1")
+  onSeccionClick: (seccion: Elemento) => void; // Callback para notificar el clic
 };
 
-export default function SeccionesPager({ elementos, columnas = 6, filas = 2, espaciado = "gap-0" }: PaginadorProps) {
+// Definimos los tipos de objetos que pueden ir en la grilla
+type ElementoGrid = 
+  | ({ tipo: 'elemento' } & Elemento)
+  | { tipo: 'siguiente' }
+  | { tipo: 'vacio' };
+
+  const gridColsMap: { [key: number]: string } = {
+    1: "grid-cols-1", 2: "grid-cols-2", 3: "grid-cols-3",
+    4: "grid-cols-4", 5: "grid-cols-5", 6: "grid-cols-6",
+    7: "grid-cols-7", 8: "grid-cols-8", 9: "grid-cols-9",
+    10: "grid-cols-10", 11: "grid-cols-11", 12: "grid-cols-12",
+  };
+
+  // Paleta de colores de fondo para los botones
+  const backgroundColors = [
+    '#fecaca', // red-200
+    '#fed7aa', // orange-200
+    '#fef08a', // yellow-200
+    '#bbf7d0', // green-200
+    '#a5f3fc', // cyan-200
+    '#bfdbfe', // blue-200
+    '#e9d5ff', // purple-200
+    '#fbcfe8', // pink-200
+  ];
+export default function SeccionesPager({ elementos, columnas = 6, filas = 2, espaciado = "gap-0", onSeccionClick }: PaginadorProps) {
   const router = useRouter();
   const elementosPorPagina = columnas * filas;
   
@@ -47,30 +72,30 @@ export default function SeccionesPager({ elementos, columnas = 6, filas = 2, esp
   if (mostrarSiguiente) conteoElementosActual++;
 
   // Creamos la lista de elementos a renderizar, incluyendo botones de navegación
-  const elementosGrid = [];
-  elementosGrid.push(...elementosDePagina.map(elemento => ({ tipo: 'elemento', ...elemento })));
+  const elementosGrid: ElementoGrid[] = [];
+  elementosGrid.push(...elementosDePagina.map(elemento => ({ tipo: 'elemento' as const, ...elemento })));
 
-  console.log(elementosGrid);
+  //console.log(elementosDePagina);
   
 
   if (mostrarSiguiente) elementosGrid.push({ tipo: 'siguiente' });
+   // Construimos la clase de la grilla de forma segura para Tailwind
+   const gridClassName = `grid ${gridColsMap[columnas] || 'grid-cols-6'} ${espaciado}  bg-gray-100 border-b-2 border-gray-200 p-1`;
 
  
   return (
-    <div className="h-full w-full ">
+    <div className="w-full   ">
       {/* Grilla paginada */}
-      <div className={`grid  grid-cols-${columnas}  ${espaciado}  `}>
-        {elementosGrid.map((elementoRow, indice) => {
-        
+      <div className={gridClassName}>
+        {elementosGrid.map((elementoRow, indice) => {        
           if (elementoRow.tipo === 'elemento') {
             return (
               <SeccionBoton
                 key={elementoRow.tipo + indice}
                 numero={ String(elementoRow.nombre)}
+                style={{ backgroundColor: backgroundColors[indice % backgroundColors.length] }}
                 nombre={elementoRow.nombre}
-                onClick={() => {
-                  /* tu handler */
-                }}
+                onClick={() => onSeccionClick(elementoRow)}
               />
             );
           }
@@ -78,7 +103,7 @@ export default function SeccionesPager({ elementos, columnas = 6, filas = 2, esp
        
           if (elementoRow.tipo === 'siguiente') {
             return (
-              <SeccionBoton key="siguiente" numero="▶" nombre="▶" onClick={irAPaginaSiguiente} />
+              <SeccionBoton key="siguiente" numero="▶" nombre="▶▶" onClick={irAPaginaSiguiente} />
             );
           } 
           return null;
@@ -91,7 +116,7 @@ export default function SeccionesPager({ elementos, columnas = 6, filas = 2, esp
           // En la última página, si este es el último espacio vacío, se convierte en el botón "Volver".
           if (!mostrarSiguiente && i === espaciosPorPagina - elementosGrid.length - 1) {
             return (
-                <SeccionBoton key="siguiente" numero="▶" nombre="▶" onClick={irAInicio} />
+                <SeccionBoton key="siguiente" numero="▶" nombre="▶▶▶" onClick={irAInicio} />
               );
           }
           return (

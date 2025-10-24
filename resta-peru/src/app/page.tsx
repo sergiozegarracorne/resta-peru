@@ -34,7 +34,7 @@ export default function VendorSelectionPage() {
         // 2. ¡IMPORTANTE! Creamos una cookie para que el middleware pueda verificar la sesión.
         //    El valor puede ser simple, solo para indicar que hay una sesión activa.
         document.cookie = "auth_token=true; path=/; max-age=86400"; // Cookie válida por 1 día
-        router.push("/dashboard");
+        router.push("/ventas");
       } else {
         alert("Clave incorrecta. Inténtalo de nuevo.");
       }

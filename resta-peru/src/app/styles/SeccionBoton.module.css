@@ -12,7 +12,7 @@
   margin-top: 0px;
   /* Apariencia de la caja */
   background-color: #ffffff; /* Interior blanco */
-  border: 1px solid #e5e7eb; /* Borde gris claro, más suave */
+  border: 1px solid #aaaaaa; /* Borde gris claro, más suave */
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); /* Sombra moderna */
 
   /* Grid o Flexbox para posicionar los elementos */
@@ -27,13 +27,12 @@
 
 /* Efecto al pasar el mouse */
 .container:hover {
-  border-color: #3b82f6; /* Borde azul al hacer hover */
-  transform: translateY(-1px); /* Ligero efecto de elevación */
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-color: #000000; /* Borde azul al hacer hover */ 
+  
+  filter: brightness(85%); /* Oscurece ligeramente el color de fondo actual */
 }
-.container:active {
-  background-color: #eff6ff; /* Fondo azul muy claro al presionar */
-  transform: translateY(0); /* Vuelve a su posición original al presionar */
+.container:active {  
+  filter: brightness(105%); /* Oscurece ligeramente el color de fondo actual */
 }
 
 /* Estilo del número grande */
@@ -49,12 +48,12 @@
   word-break: break-word; /* Permite que las palabras largas se corten para evitar el desbordamiento */
 
   /* Fuente y color (el color de la imagen es un teal/turquesa oscuro) */
-  font-size: 1.2em; /* Tamaño de fuente grande */
+  font-size: 1.0em; /* Tamaño de fuente grande */
   font-weight: bold;
-  color: #1f2937; /* Color de texto gris oscuro, más neutro */
+  color: #313030; /* Color de texto gris oscuro, más neutro */
 }
 .container:hover .numero {
-  color: #2563eb; /* El texto se vuelve azul en hover */
+  color: #000000; /* El texto se vuelve azul en hover */
 }
 
 /* Estilo de la franja negra del nombre */
