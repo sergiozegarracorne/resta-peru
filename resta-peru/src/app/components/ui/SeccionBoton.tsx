@@ -11,14 +11,13 @@ interface SeccionBotonProps
   nombre: string;
 }
 
-const VendedorBoton = ({ numero, nombre, type = "button", ...props }: SeccionBotonProps) => {
+const SeccionBoton = ({ numero, nombre, type = "button", ...props }: SeccionBotonProps) => {
   return (
     // Cambiamos el <div> por un <button> y le pasamos el `type` y el resto de props.
     <button  type={type} className={styles.container } {...props}>
-      <div role="button" className={styles.numero }>{numero}</div>
-      <div className={styles.nombre}>{nombre}</div>
+      <div role="button" className={styles.numero }>{nombre}</div>
     </button>
   );
 };
 
-export default VendedorBoton;  
+export default SeccionBoton;  

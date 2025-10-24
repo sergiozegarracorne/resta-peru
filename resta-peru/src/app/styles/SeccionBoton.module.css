@@ -2,58 +2,70 @@
 
 /* Contenedor principal y botón */
 .container {
-    /* --- Reseteo de estilos de botón --- */
-    padding: 0;
-    border: none;
-    font: inherit;
-      /* Tamaño y forma (ajusta el padding para el tamaño) */    
-      /* width: 194px; */ /* Eliminado para que el grid lo ajuste automáticamente */
-      height: 100px; /* Ejemplo de tamaño, ajusta según necesidad */  
-      margin-top: 0px;
-      /* Apariencia de la caja */
-      background-color: white; /* Interior blanco */
-      border: 1px solid #aaa; /* Borde sutil */
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
-      
-      /* Grid o Flexbox para posicionar los elementos */
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; /* Empuja el nombre hacia abajo */
-      
-      /* Comportamiento de botón */
-      cursor: pointer;
-      transition: transform 0.1s, box-shadow 0.1s; /* Animación al hacer hover */
-    }
-    
-    /* Efecto al pasar el mouse */
-    .container:hover {
-      border: 1px solid #00dd1d; /* Borde sutil */
-      box-shadow: 0 1px 8px rgba(59, 209, 0, 0.8);
-    }
-    
-    /* Estilo del número grande */
-    .numero {
-      /* Centrado */
-      text-align: center;
-      /* Espacio superior e inferior para centrar el número */
-      padding-top: 10px; 
-      flex-grow: 1; /* Permite que el espacio tome el máximo posible */
-      
-      /* Fuente y color (el color de la imagen es un teal/turquesa oscuro) */
-      font-size: 2.5em; /* Tamaño de fuente grande */
-      font-weight: bold;
-      color: #006e1c; /* Turquesa oscuro similar al de la imagen */
-    }
-    
-    /* Estilo de la franja negra del nombre */
-    .nombre {
-      background-color: black;
-      color: white;
-      text-align: center;
-      padding: 5px 0; /* Relleno vertical */
-      
-      /* Texto en mayúsculas como en la imagen */
-      text-transform: uppercase;
-      font-size: 0.8em;
-      font-weight: 500;
-    }
+  /* --- Reseteo de estilos de botón --- */
+  padding: 2px 4px;
+  border: none;
+  font: inherit;
+  /* Tamaño y forma (ajusta el padding para el tamaño) */
+  /* width: 194px; */ /* Eliminado para que el grid lo ajuste automáticamente */
+  height: 80px; /* Ejemplo de tamaño, ajusta según necesidad */
+  margin-top: 0px;
+  /* Apariencia de la caja */
+  background-color: #ffffff; /* Interior blanco */
+  border: 1px solid #e5e7eb; /* Borde gris claro, más suave */
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); /* Sombra moderna */
+
+  /* Grid o Flexbox para posicionar los elementos */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  /* Comportamiento de botón */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; /* Transición más suave para todos los cambios */
+}
+
+/* Efecto al pasar el mouse */
+.container:hover {
+  border-color: #3b82f6; /* Borde azul al hacer hover */
+  transform: translateY(-1px); /* Ligero efecto de elevación */
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+.container:active {
+  background-color: #eff6ff; /* Fondo azul muy claro al presionar */
+  transform: translateY(0); /* Vuelve a su posición original al presionar */
+}
+
+/* Estilo del número grande */
+.numero {
+  /* Convertimos en contenedor flex para centrar contenido */
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  flex-grow: 1; /* Permite que el espacio tome el máximo posible */
+  padding: 2px 4px; /* Añadimos un poco de padding horizontal */
+
+  /* --- Manejo de texto largo --- */
+  word-break: break-word; /* Permite que las palabras largas se corten para evitar el desbordamiento */
+
+  /* Fuente y color (el color de la imagen es un teal/turquesa oscuro) */
+  font-size: 1.2em; /* Tamaño de fuente grande */
+  font-weight: bold;
+  color: #1f2937; /* Color de texto gris oscuro, más neutro */
+}
+.container:hover .numero {
+  color: #2563eb; /* El texto se vuelve azul en hover */
+}
+
+/* Estilo de la franja negra del nombre */
+.nombre {
+  background-color: #4b5563; /* Barra inferior gris oscuro en lugar de negro puro */
+  color: white;
+  text-align: center;
+  padding: 5px 0; /* Relleno vertical */
+
+  /* Texto en mayúsculas como en la imagen */
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: 500;
+}

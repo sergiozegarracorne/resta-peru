@@ -59,7 +59,7 @@ export default function SeccionesPager({ elementos, columnas = 6, filas = 2, esp
   return (
     <div className="h-full w-full ">
       {/* Grilla paginada */}
-      <div className={`grid grid-cols-${columnas} ${espaciado} h-full p-0  `}>
+      <div className={`grid  grid-cols-${columnas}  ${espaciado}  `}>
         {elementosGrid.map((elementoRow, indice) => {
         
           if (elementoRow.tipo === 'elemento') {
@@ -76,9 +76,9 @@ export default function SeccionesPager({ elementos, columnas = 6, filas = 2, esp
           }
 
        
-          if (elemento.tipo === 'siguiente') {
+          if (elementoRow.tipo === 'siguiente') {
             return (
-              <SeccionBoton key="siguiente" numero="▶" nombre="Siguiente" onClick={irAPaginaSiguiente} />
+              <SeccionBoton key="siguiente" numero="▶" nombre="▶" onClick={irAPaginaSiguiente} />
             );
           } 
           return null;
@@ -91,11 +91,11 @@ export default function SeccionesPager({ elementos, columnas = 6, filas = 2, esp
           // En la última página, si este es el último espacio vacío, se convierte en el botón "Volver".
           if (!mostrarSiguiente && i === espaciosPorPagina - elementosGrid.length - 1) {
             return (
-                <SeccionBoton key="siguiente" numero="▶" nombre="Siguiente" onClick={irAInicio} />
+                <SeccionBoton key="siguiente" numero="▶" nombre="▶" onClick={irAInicio} />
               );
           }
           return (
-            <SeccionBoton key={`empty-${i}`} numero="X" nombre="-" onClick={irAPaginaSiguiente} />
+            <SeccionBoton key={`empty-${i}`} numero="X" nombre="x" onClick={irAPaginaSiguiente} />
           );
         })}
       </div>
