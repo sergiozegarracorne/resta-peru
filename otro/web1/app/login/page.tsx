@@ -1,25 +1,31 @@
 // app/login/page.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, FormEvent } from "react";
+import { useRouter } from "next/navigation"; // 1. Importar useRouter
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // 2. Estado para la carga
+  const [error, setError] = useState<string | null>(null); // 3. Estado para el error
+  const router = useRouter(); // 4. Inicializar el router
 
   // app/login/page.tsx
 
   // ... (el resto del código de la página se queda igual)
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setLoading(true); // Inicia la carga
+    setError(null); // Limpia errores previos
 
     // 1. Muestra un mensaje de "cargando" o deshabilita el botón (opcional pero bueno)
-    console.log("Enviando datos al backend...");
+    // console.log("Enviando datos al backend...");
 
     try {
       // 2. Define la URL de tu API de Go. ¡Asegúrate de que el puerto sea el correcto!
-      const apiUrl = "http://localhost:9000/auth/login"; // Cambia 8080 si tu Go usa otro puerto
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:9000/auth/login"; // Mejor con variables de entorno
 
       // 3. Envía los datos usando fetch
       const response = await fetch(apiUrl, {
@@ -45,17 +51,19 @@ export default function LoginPage() {
         document.cookie = `auth_token=${data.token}; path=/;`; // Guarda el token en una cookie
 
         // 6. Redirige al usuario al panel de admin
-        window.location.href = "/admin";
+        router.push("/admin"); // 5. Redirección con Next.js
       } else {
         // Si la respuesta es un error (ej. 401 Unauthorized)
         const errorData = await response.json();
         console.error("Error de login:", errorData.message);
-        alert(`Error: ${errorData.message || "Credenciales incorrectas"}`);
+        setError(errorData.message || "Credenciales incorrectas");
       }
     } catch (error) {
       // Si hay un error de red o el servidor no responde
       console.error("Error de conexión:", error);
-      alert("No se pudo conectar al servidor. Intenta más tarde.");
+      setError("No se pudo conectar al servidor. Intenta más tarde.");
+    } finally {
+      setLoading(false); // Termina la carga
     }
   };
 
@@ -91,6 +99,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={loading}
               className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -110,6 +119,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              disabled={loading}
               className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -120,6 +130,7 @@ export default function LoginPage() {
               <input
                 id="remember"
                 type="checkbox"
+                disabled={loading}
                 className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
               />
               <label
@@ -139,12 +150,20 @@ export default function LoginPage() {
             </div>
           </div>
 
+          {/* Mensaje de Error */}
+          {error && (
+            <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">
+              {error}
+            </div>
+          )}
+
           {/* Botón de Entrar */}
           <button
             type="submit"
-            className="w-full rounded-lg bg-blue-600 px-4 py-3 text-center text-base font-bold text-white shadow-md transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            disabled={loading}
+            className="w-full rounded-lg bg-blue-600 px-4 py-3 text-center text-base font-bold text-white shadow-md transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-blue-400 disabled:cursor-not-allowed"
           >
-            Entrar
+            {loading ? "Cargando..." : "Entrar"}
           </button>
         </form>
       </div>

@@ -38,7 +38,7 @@ export default function VentasPage() {
       <div className="flex flex-1">
          {/* Barra lateral para productos seleccionados (1/3 del ancho) */}
          <div className="w-3/12 bg-gray-100 p-4 border-l border-r-2 border-gray-400">
-          <h4 className="text-lg font-bold border-b pb-2 mb-4">Productos Seleccionados</h4>
+          <h4 className="text-lg font-bold border-b pb-2 mb-4 text-blue-950">Productos Seleccionados</h4>
           {/* Aquí irá la lista de productos */}
         </div>
         {/* Paginador de secciones (2/3 del ancho) */}
