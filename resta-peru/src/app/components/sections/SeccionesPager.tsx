@@ -4,7 +4,7 @@ import { useMemo, useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import SeccionBoton from "@/componentsUI/SeccionBoton";
 
-type Elemento = { numero: string | number; nombre: string; clave: string};
+type Elemento = { id: number, numero: string ; nombre: string; clave: string};
 type PaginadorProps = {
   elementos: Elemento[];
   columnas?: number;    // columnas visibles

@@ -1,116 +1,161 @@
 [
   {
+    "id":1,
     "numero": "1",
     "nombre": "SECCION 1",
     "clave": "123456"
   },
   {
+    "id":2,
+    
     "numero": "2",
     "nombre": "BEBIDAS",
     "clave": "234567"
   },
   {
+    "id":3,
+    
     "numero": "3",
     "nombre": "ARROCES",
     "clave": "234567"
   },
   {
+    "id":4,
+
     "numero": "4",
     "nombre": "CARNES",
     "clave": "234567"
   },
   {
+    "id":5,
+
     "numero": "5",
     "nombre": "SOPAS",
     "clave": "345678"
   },
   {
+    "id":6,
+
     "numero": "6",
     "nombre": "ENSALADAS",
     "clave": "456789"
   },
   {
+    "id":7,
+
     "numero": "7",
     "nombre": "POSTRES",
     "clave": "567890"
   },
   {
+    "id":8,
+
     "numero": "8",
     "nombre": "MARISCOS",
     "clave": "678901"
   },
-  {
+  { 
+    "id":9,
+
     "numero": "9",
     "nombre": "PESCADOS",
     "clave": "789012"
   },
   {
+    "id":10,
+
     "numero": "10",
     "nombre": "POLLOS",
     "clave": "890123"
   },
   {
+    "id":11,
+
     "numero": "11",
     "nombre": "SANDWICHES",
     "clave": "901234"
   },
   {
+    "id":12,
+
     "numero": "12",
     "nombre": "PASTAS",
     "clave": "012345"
   },
   {
+    "id":13,
+
     "numero": "13",
     "nombre": "PIZZAS",
     "clave": "123457"
   },
   {
+    "id":14,
+
     "numero": "14",
     "nombre": "COMBOS",
     "clave": "234567"
   },
   {
+    "id":15,
+
     "numero": "15",
     "nombre": "CRIOLLOS",
     "clave": "345679"
   },
   {
+    "id":16,
+
     "numero": "16",
     "nombre": "PARA LLEVAR",
     "clave": "456790"
   },
   {
+    "id":17,
+
     "numero": "17",
     "nombre": "ALMUERZO EJECUTIVO",
     "clave": "567891"
   },
   {
+    "id":18,
+
     "numero": "18",
     "nombre": "DESAYUNOS",
     "clave": "678902"
   },
   {
+    "id":19,
+
     "numero": "19",
     "nombre": "BAR",
     "clave": "789013"
   },
   {
+    "id":20,
+
     "numero": "20",
     "nombre": "CAFÉ",
     "clave": "890124"
   },
   {
+    "id":21,
+
     "numero": "21",
     "nombre": "HAMBURGUESAS",
     "clave": "901235"
   },
   {
+    "id":22,
+
     "numero": "22",
     "nombre": "TABLAS",
     "clave": "012346"
   }
   ,
   {
+    "id":23,
+
     "numero": "23",
     "nombre": "OTROS",
     "clave": "012346"
