@@ -5,10 +5,9 @@ import SeccionBoton from "@/componentsUI/SeccionBoton";
 
 // Tipos específicos para productos
 type Producto = { 
-  id: number;
+  numero: string;  
   nombre: string; 
-  precio: number;
-  id_seccion: string;
+  seccion: string;
 };
 
 type PaginadorProps = {
@@ -57,11 +56,12 @@ export default function ProductosPager({ elementos, columnas = 6, filas = 3, esp
   return (
     <div className="h-full w-full">
       <div className={gridClassName}>
-        {elementosDePagina.map((producto) => (
-          <SeccionBoton
-            key={producto.id}
+
+        {elementosDePagina.map((producto) => (                   
+          <SeccionBoton          
+            key={producto.numero}
             // Formateamos el precio para que se vea bien
-            numero={`S/ ${producto.precio?.toFixed(2)}`}
+            numero={`S/ ${producto.numero}`}
             nombre={producto.nombre}
             onClick={() => {
               console.log("Producto seleccionado:", producto);

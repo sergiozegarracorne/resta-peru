@@ -10,8 +10,9 @@ import productosData from "../productos.json";
 
 
 interface Seccion {
-  numero: string | number;
-  nombre: string;
+  id: number
+  numero:  string;
+  nombre: string;  
   clave: string;
 }
 
@@ -19,12 +20,14 @@ export default function VentasPage() {
   const [selectedSeccion, setSelectedSeccion] = useState<Seccion | null>(sessionesData[0] || null);
 
   const handleSeccionClick = (seccion: Seccion) => {
+    console.log("Sección seleccionada:", seccion);
+    
     setSelectedSeccion(seccion);
   };
 
   const productosFiltrados = useMemo(() => {
     if (!selectedSeccion) return [];
-    return productosData.filter(p => p.seccion === selectedSeccion.numero);
+    return productosData.filter(p => p.seccion === selectedSeccion.numero.toString());
   }, [selectedSeccion]);
 
 
