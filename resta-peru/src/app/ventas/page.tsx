@@ -10,7 +10,7 @@ import productosData from "../productos.json";
 
 
 interface Seccion {
-  id: number
+  id: number;
   numero:  string;
   nombre: string;  
   clave: string;
@@ -27,7 +27,7 @@ export default function VentasPage() {
 
   const productosFiltrados = useMemo(() => {
     if (!selectedSeccion) return [];
-    return productosData.filter(p => p.seccion === selectedSeccion.numero.toString());
+    return productosData.filter(p => p.seccion === selectedSeccion.numero);
   }, [selectedSeccion]);
 
 

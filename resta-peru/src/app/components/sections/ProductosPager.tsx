@@ -51,7 +51,7 @@ export default function ProductosPager({ elementos, columnas = 6, filas = 3, esp
 
   const mostrarSiguiente = pagina < paginasTotales - 1;
 
-  const gridClassName = `grid ${gridColsMap[columnas] || 'grid-cols-6'} ${espaciado} p-1 h-full`;
+  const gridClassName = `grid ${gridColsMap[columnas] || 'grid-cols-6'} ${espaciado} p-1 `;
 
   return (
     <div className="h-full w-full">

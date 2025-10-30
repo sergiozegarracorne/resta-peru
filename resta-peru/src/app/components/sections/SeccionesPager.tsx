@@ -58,9 +58,16 @@ export default function SeccionesPager({ elementos, columnas = 6, filas = 2, esp
     [elementos, pagina, elementosPorPaginaCompleta]
   );
 
+  // Efecto para auto-seleccionar la primera sección al cambiar de página
+  useEffect(() => {
+    if (elementosDePagina.length > 0) {
+      onSeccionClick(elementosDePagina[0]);
+    }
+  }, [elementosDePagina, onSeccionClick]);
+
   const irAPaginaAnterior = useCallback(() => setPagina(p => Math.max(0, p - 1)), []);
   const irAPaginaSiguiente = useCallback(() => setPagina(p => Math.min(paginasTotales - 1, p + 1)), [paginasTotales]);
-  const irAInicio = useCallback(() => setPagina(p => Math.max(0,0)), []);
+  const irAInicio = useCallback(() => setPagina(0), []);
 
   // Determinamos qué botones de navegación mostrar
 

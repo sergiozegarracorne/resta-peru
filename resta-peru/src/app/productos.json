@@ -73,4 +73,78 @@
         "nombre": "sopa de cordero",
         "seccion": "5"
       }
+      ,{
+        "numero": "16",
+        "nombre": "Ensalada de Yogurt",
+        "seccion": "6"
+      },{
+        "numero": "17",
+        "nombre": "Ensalada de Frutas",
+        "seccion": "6"
+
+      },{
+        "numero": "18",
+        "nombre": "Ensalada de Verduras",
+        "seccion": "6"
+      },{
+        "numero": "19",
+        "nombre": "Ensalada de Frutas",
+        "seccion": "6"
+
+      },{
+        "numero": "20",
+        "nombre": "Ensalada de papas",
+        "seccion": "6"
+
+      },{
+        "numero": "21",
+        "nombre": "Ensalada de cereales",
+        "seccion": "6"
+      },{
+        "numero":"22",
+        "nombre":"ensalada fresca",
+        "seccion":"6"
+
+      },{
+        "numero":"23",
+        "nombre":"ensalada de rusa",
+        "seccion":"6"
+
+      },{
+        "numero":"24",
+        "nombre":"ensalada mixta",
+        "seccion":"6"
+      },{
+        "numero": "25",
+        "nombre": "Ensalada de Verduras",
+        "seccion": "6"
+      },{
+        "numero": "26",
+        "nombre": "Ensalada de Frutas",
+        "seccion": "6"
+
+      },{
+        "numero": "27",
+        "nombre": "Ensalada de papas",
+        "seccion": "6"
+
+      },{
+        "numero": "28",
+        "nombre": "Ensalada de cereales",
+        "seccion": "6"
+      },{
+        "numero":"29",
+        "nombre":"ensalada fresca",
+        "seccion":"6"
+
+      },{
+        "numero":"30",
+        "nombre":"ensalada de rusa",
+        "seccion":"6"
+
+      },{
+        "numero":"31",
+        "nombre":"ensalada mixta",
+        "seccion":"6"
+      }
 ]
