@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+}
+h4{
+    text-align: center;
+    padding: 0px 10px;
+    margin: 4px auto;
+}
+
+.controls {
+    margin: 10px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e9e9e9;
+}
+
+button:hover {
+    background-color: #d1d1d1;
+}
+
+canvas {
+    border: 2px solid #333;
+    background-color: #fff;
+    cursor: crosshair;
+}
+
+#instructions {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+}
+
+.table-container {
+    margin-top: 10px;
+    max-height: 340px; /* Altura máxima antes de hacer scroll */
+    overflow-y: auto; /* Scroll vertical si es necesario */
+}
+
+table {
+    background-color: white;
+    width: 600px;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    border: 1px solid #aaa;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 6px 8px;
+    text-align: center;
+}
+th{
+    text-align: center;
+}
+td:last-child{
+    color: red;
+    text-align: left;
+    width: 320px;
+}
+
+thead {
+    background-color: #f2f2f2;
+    position: sticky; /* Encabezado fijo */
+    top: 0;
+}

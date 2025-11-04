@@ -123,7 +123,7 @@ export default function SeccionesPager({ elementos, columnas = 6, filas = 2, esp
         
         {/* Relleno para mantener rejilla completa */}
         {Array.from({ length: espaciosPorPagina - elementosGrid.length }).map((_, i) => {
-            console.log(i);
+           // console.log(i);
             
           // En la última página, si este es el último espacio vacío, se convierte en el botón "Volver".
           if (!mostrarSiguiente && i === espaciosPorPagina - elementosGrid.length - 1) {
