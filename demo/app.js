@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let nodeIdCounter = 0;
 
     // --- CLASES PARA NODOS Y ARISTAS ---
-    class GraphNode {
+    class NodoExtructura {
         constructor(x, y, id) {
             this.x = x;
             this.y = y;
@@ -33,8 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         drawNodes();
     }
 
-    function drawNodes() {
-        // Reemplazamos .forEach() con un bucle 'for' para mantener la simplicidad.
+    function drawNodes() {        
         for (let i = 0; i < nodes.length; i++) {
             const node = nodes[i];
             ctx.beginPath();
@@ -52,13 +51,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function drawEdges(edgesToDraw = bordes, color = '#333') {
-        // Reemplazamos .forEach() con un bucle 'for' para mantener la simplicidad.
+        
         for (let i = 0; i < edgesToDraw.length; i++) {
             const borde = edgesToDraw[i];
-            const fromNode = nodes.find(n => n.id === borde.from);
-            const toNode = nodes.find(n => n.id === borde.to);
+            let fromNode = null;
+            let toNode = null;
+
+            // Reemplazamos .find() con bucles 'for'
+            for (let j = 0; j < nodes.length; j++) {
+                if (nodes[j].id === borde.from) {
+                    fromNode = nodes[j];
+                }
+                if (nodes[j].id === borde.to) {
+                    toNode = nodes[j];
+                }
+            }
+
             if (fromNode && toNode) {
-                // CAMBIO: Ahora llamamos a drawLine en lugar de drawArrow
                 drawLine(fromNode, toNode, borde.weight, color);
             }
         }
@@ -94,10 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillText(weight, midX, midY);
     }
 
-    /**
-     * Función auxiliar para comprobar si un nodo está en el array de visitados.
-     * Esto reemplaza el método .has() de un Set para que el algoritmo sea más simple.
-     */
+
     function fueVisitado(nodoId, arregloDeVisitados) {
         for (let i = 0; i < arregloDeVisitados.length; i++) {
             if (arregloDeVisitados[i] === nodoId) {
@@ -106,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return false; // No encontrado
     }
-    // --- IMPLEMENTACIÓN DE ALGORITMOS ---
+
     function runDijkstra() {
         if (nodes.length === 0) {
             tablaContenedora.innerHTML = ''; // Limpiar tabla si existe
@@ -114,38 +120,38 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const startId = prompt('Introduce el nodo de inicio (Ej: A, B, C...):')?.toUpperCase();
-        const nodoInicial = nodes.find(n => n.id === startId);
+        const seleccionNodo = prompt('Introduce el nodo de inicio (Ej: A, B, C...):');       
+        const nodoInicio = seleccionNodo.toUpperCase();
+        let nodoInicial = null;
+        
+        for (let i = 0; i < nodes.length; i++) {
+            if (nodes[i].id === nodoInicio) {
+                nodoInicial = nodes[i];
+                break;
+            }
+        }
 
-        if (!nodoInicial) {
-            alert('Nodo no válido. Por favor, introduce una letra que corresponda a un nodo existente.');
-            return;
+        if (nodoInicial === null) {
+            alert('Nodo no válido. Por favor, introduce una letra que corresponda a un nodo existente.');  return;
         }
 
         // --- INICIALIZACIÓN ---
-        // 1. Crear un objeto para guardar la distancia más corta desde el inicio a cada nodo.
         const distancias = {};
-        // 2. Crear un objeto para guardar el nodo anterior en la ruta más corta.
         const anteriores = {};
-        // 3. Crear un conjunto (Set) para llevar la cuenta de los nodos que ya hemos visitado.
-        const visitados = []; // Usaremos un array simple en lugar de un Set.
-
-        // 4. Inicializar las distancias: 0 para el nodo de inicio, Infinito para los demás.
-        // Reemplazamos .forEach() con un bucle 'for' para mantener la simplicidad.
+        const visitados = []; 
+        
         for (let i = 0; i < nodes.length; i++) {
             const node = nodes[i];
-            distancias[node.id] = node.id === startId ? 0 : Infinity;
+            distancias[node.id] = node.id === nodoInicio ? 0 : Infinity;
             anteriores[node.id] = null;
         }
-
-        // --- BUCLE PRINCIPAL DEL ALGORITMO ---
+        
         // Mientras queden nodos por visitar...
-        while (visitados.length < nodes.length) {
-            // 1. Encontrar el nodo no visitado con la menor distancia actual.
+        while (visitados.length < nodes.length) {            
             let nodoActualId = null;
             let distanciaMinima = Infinity;
 
-            // Reemplazamos .forEach() con un bucle 'for' para mantener la simplicidad.
+            // Buscamos el nodo no visitado con la menor distancia
             for (let i = 0; i < nodes.length; i++) {
                 const node = nodes[i];
                 if (!fueVisitado(node.id, visitados) && distancias[node.id] < distanciaMinima) {
@@ -153,8 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     nodoActualId = node.id;
                 }
             }
-
-            // Si no encontramos más nodos alcanzables, salimos del bucle.
+            
             if (nodoActualId === null || distancias[nodoActualId] === Infinity) {
                 break;
             }
@@ -162,8 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 2. Marcar el nodo actual como visitado.
             visitados.push(nodoActualId);
 
-            // 3. Para cada vecino del nodo actual...
-            // Reemplazamos .filter() con un bucle 'for' para mantener la simplicidad.
+            // 3. Para cada vecino del nodo actual...            
             const vecinos = [];
             for (let i = 0; i < bordes.length; i++) {
                 const borde = bordes[i];
@@ -172,23 +176,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Reemplazamos .forEach() con un bucle 'for' para mantener la simplicidad.
             for (let i = 0; i < vecinos.length; i++) {
                 const borde = vecinos[i];
                 const idVecino = borde.from === nodoActualId ? borde.to : borde.from;
-                // Calculamos la nueva distancia desde el inicio pasando por el nodo actual.
-                const nuevaDistancia = distancias[nodoActualId] + borde.weight;
 
-                // 4. Si encontramos un camino más corto hacia el vecino...
-                if (nuevaDistancia < distancias[idVecino]) {
-                    // ...actualizamos su distancia y guardamos el camino.
-                    distancias[idVecino] = nuevaDistancia;
-                    anteriores[idVecino] = nodoActualId;
+                // Solo procesamos si el vecino no ha sido visitado
+                if (!fueVisitado(idVecino, visitados)) {
+                    // Calculamos la nueva distancia desde el inicio pasando por el nodo actual.
+                    const nuevaDistancia = distancias[nodoActualId] + borde.weight;
+
+                    // 4. Si encontramos un camino más corto hacia el vecino...
+                    if (nuevaDistancia < distancias[idVecino]) {
+                        // ...actualizamos su distancia y guardamos el camino.
+                        distancias[idVecino] = nuevaDistancia;
+                        anteriores[idVecino] = nodoActualId;
+                    }
                 }
             }
         }
 
-        displayDijkstraResultsTable(startId, distancias, anteriores);
+        displayDijkstraResultsTable(nodoInicio, distancias, anteriores);
     }
 
     function runKruskal() {
@@ -199,9 +206,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const sortedEdges = [...bordes].sort((a, b) => a.weight - b.weight);
         const mst = [];
-        const disjointSet = new DisjointSet(nodes.map(n => n.id));
+        const nodeIds = [];
+        for (let i = 0; i < nodes.length; i++) {
+            nodeIds.push(nodes[i].id);
+        }
+        const disjointSet = new DisjointSet(nodeIds);
 
-        for (const borde of sortedEdges) {
+        for (let i = 0; i < sortedEdges.length; i++) {
+            const borde = sortedEdges[i];
             const rootFrom = disjointSet.find(borde.from);
             const rootTo = disjointSet.find(borde.to);
             if (rootFrom !== rootTo) {
@@ -213,13 +225,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- FUNCIONES DE VISUALIZACIÓN ---
-    function visualizeDijkstra(startId, anteriores) {
+    function visualizeDijkstra(nodoInicio, anteriores) {
         draw();
-        instructions.textContent = `Dijkstra desde ${startId}. Los caminos más cortos están resaltados en rojo.`;
-        // Reemplazamos .forEach() con un bucle 'for' para mantener la simplicidad.
+        instructions.textContent = `Dijkstra desde ${nodoInicio}. Los caminos más cortos están resaltados en rojo.`;
+        // Reemplazamos .forEach() con un bucle 'for'
         for (let i = 0; i < nodes.length; i++) {
             const node = nodes[i];
-            if (node.id !== startId && anteriores[node.id]) {
+            if (node.id !== nodoInicio && anteriores[node.id]) {
                 let currentNodeId = node.id;
                 const pathEdges = [];
                 while (anteriores[currentNodeId]) {
@@ -238,26 +250,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- CLASES AUXILIARES ---
-    class PriorityQueue {
-        constructor() { this.items = []; }
-        enqueue(element, priority) {
-            const queueElement = { element, priority };
-            let added = false;
-            for (let i = 0; i < this.items.length; i++) {
-                if (queueElement.priority < this.items[i].priority) {
-                    this.items.splice(i, 0, queueElement);
-                    added = true; break;
-                }
-            }
-            if (!added) this.items.push(queueElement);
-        }
-        dequeue() { return this.isEmpty() ? null : this.items.shift(); }
-        isEmpty() { return this.items.length === 0; }
-    }
-
     class DisjointSet {
         constructor(elements) {
             this.parent = {};
+            // Reemplazamos .forEach() con un bucle 'for'
             for (let i = 0; i < elements.length; i++) {
                 this.parent[elements[i]] = elements[i];
             }
@@ -275,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * CAMBIO: Nueva función para mostrar los resultados de Dijkstra en una tabla.
      */
-    function displayDijkstraResultsTable(startId, distancias, anteriores) {
+    function displayDijkstraResultsTable(nodoInicio, distancias, anteriores) {
         tablaContenedora.innerHTML = ''; // Limpiar contenido anterior
 
         const table = document.createElement('table');
@@ -289,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Cuerpo de la tabla
         const tbody = table.createTBody();
 
-        // Reemplazamos .forEach() con un bucle 'for' para mantener la simplicidad.
+        // Reemplazamos .forEach() con un bucle 'for'
         for (let i = 0; i < nodes.length; i++) {
             const node = nodes[i];
             const row = tbody.insertRow();
@@ -298,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const cellCost = row.insertCell();
             const cellPath = row.insertCell();
 
-            cellInicio.textContent = startId;
+            cellInicio.textContent = nodoInicio;
             cellNode.textContent =  node.id;
 
             if (distancias[node.id] === Infinity) {
@@ -307,13 +303,20 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 cellCost.textContent = distancias[node.id];
 
-                // Reconstruir la ruta
-                const path = [];
-                let currentNode = node.id;
-                while (currentNode) {
-                    path.unshift(currentNode);
-                    currentNode = anteriores[currentNode];
+                // 1. Reconstruir la ruta en orden inverso usando push()
+                const rutaInversa = [];
+                let NodoActual = node.id;
+                while (NodoActual) {
+                    rutaInversa.push(NodoActual);
+                    NodoActual = anteriores[NodoActual];
                 }
+
+                // 2. Invertir la ruta para obtener el orden correcto usando un bucle for
+                const path = [];
+                for (let j = rutaInversa.length - 1; j >= 0; j--) {
+                    path.push(rutaInversa[j]);
+                }
+
                 cellPath.textContent = path.join(' → ');
             }
         }
@@ -332,9 +335,10 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'G', x: 660, y: 360 }, { id: 'H', x: 720, y: 100 }
         ];
 
+        // Reemplazamos .forEach() con un bucle 'for'
         for (let i = 0; i < nodePositions.length; i++) {
             const pos = nodePositions[i];
-            nodes.push(new GraphNode(pos.x, pos.y, pos.id));
+            nodes.push(new NodoExtructura(pos.x, pos.y, pos.id));
         }
         const connections = [
             { from: 'A', to: 'B' }, { from: 'A', to: 'C' }, { from: 'B', to: 'D' }, { from: 'B', to: 'C' },
@@ -342,6 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { from: 'E', to: 'F' }, { from: 'E', to: 'G' }, { from: 'F', to: 'H' }, { from: 'G', to: 'H' },
             { from: 'F', to: 'G' }
         ];
+        // Reemplazamos .forEach() con un bucle 'for'
         for (let i = 0; i < connections.length; i++) {
             const conn = connections[i];
             const weight = Math.floor(Math.random() * 15) + 1;
