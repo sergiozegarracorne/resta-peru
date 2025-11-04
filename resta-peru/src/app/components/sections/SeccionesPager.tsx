@@ -66,7 +66,16 @@ export default function SeccionesPager({ elementos, columnas = 6, filas = 2, esp
   }, [elementosDePagina, onSeccionClick]);
 
   const irAPaginaAnterior = useCallback(() => setPagina(p => Math.max(0, p - 1)), []);
-  const irAPaginaSiguiente = useCallback(() => setPagina(p => Math.min(paginasTotales - 1, p + 1)), [paginasTotales]);
+  const irAPaginaSiguiente = useCallback(() => {
+    setPagina(p => {
+      console.log(p);
+      
+      const nextPage = Math.min(paginasTotales - 1, p + 1);
+      const inicio = nextPage * elementosPorPaginaCompleta;
+      onSeccionClick(elementos[inicio]);
+      return nextPage;
+    });
+  }, [paginasTotales, elementosPorPaginaCompleta, elementos, onSeccionClick]);
   const irAInicio = useCallback(() => setPagina(0), []);
 
   // Determinamos qué botones de navegación mostrar
@@ -118,7 +127,7 @@ export default function SeccionesPager({ elementos, columnas = 6, filas = 2, esp
         
         {/* Relleno para mantener rejilla completa */}
         {Array.from({ length: espaciosPorPagina - elementosGrid.length }).map((_, i) => {
-            console.log(i);
+           // console.log(i);
             
           // En la última página, si este es el último espacio vacío, se convierte en el botón "Volver".
           if (!mostrarSiguiente && i === espaciosPorPagina - elementosGrid.length - 1) {
