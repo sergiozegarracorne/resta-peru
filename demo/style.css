@@ -58,7 +58,7 @@ canvas {
 
 table {
     background-color: white;
-    width: 600px;
+    width: 680px;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
     border: 1px solid #aaa;
@@ -72,7 +72,20 @@ th, td {
 th{
     text-align: center;
 }
-td:last-child{
+td:last-child {     
+    text-align: center;
+    width: 80px;
+}
+
+td button{
+    padding: 2px 8px;
+    margin: 1px ;
+    font-size: 12px;
+    cursor: pointer
+}
+
+
+td:nth-last-child(2) {
     color: red;
     text-align: left;
     width: 320px;
