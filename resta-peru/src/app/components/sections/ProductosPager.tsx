@@ -15,6 +15,7 @@ type PaginadorProps = {
   columnas?: number;
   filas?: number;
   espaciado?: string;
+  onProductoAgregado: () => void; // Callback para notificar que se agregó un producto
 };
 
 // Mapeo de columnas para Tailwind
@@ -25,7 +26,7 @@ const gridColsMap: { [key: number]: string } = {
   10: "grid-cols-10", 11: "grid-cols-11", 12: "grid-cols-12",
 };
 
-export default function ProductosPager({ elementos, columnas = 6, filas = 3, espaciado = "gap-1" }: PaginadorProps) {
+export default function ProductosPager({ elementos, columnas = 6, filas = 3, espaciado = "gap-1", onProductoAgregado }: PaginadorProps) {
   const elementosPorPagina = columnas * filas;
   const espaciosPorPagina = elementosPorPagina;
   
@@ -49,6 +50,29 @@ export default function ProductosPager({ elementos, columnas = 6, filas = 3, esp
   const irAPaginaSiguiente = useCallback(() => setPagina(p => Math.min(paginasTotales - 1, p + 1)), [paginasTotales]);
   const irAInicio = useCallback(() => setPagina(0), []);
 
+  const handleProductoClick = (producto: Producto) => {
+    console.log("Producto seleccionado para añadir al menú:", producto);
+
+    try {
+      // 1. Obtener el menú actual de localStorage.
+      const menuActualJSON = localStorage.getItem('menuActual');
+      const menuActual: Producto[] = menuActualJSON ? JSON.parse(menuActualJSON) : [];
+
+      // 2. Añadir el nuevo producto a la lista.
+      menuActual.push(producto);
+
+      // 3. Guardar la lista actualizada en localStorage.
+      localStorage.setItem('menuActual', JSON.stringify(menuActual));
+
+      console.log("Menú actualizado en localStorage:", menuActual);
+
+      // 4. Notificar al componente padre que el menú ha cambiado.
+      onProductoAgregado();
+    } catch (error) {
+      console.error("Error al guardar en localStorage:", error);
+    }
+  };
+
   const mostrarSiguiente = pagina < paginasTotales - 1;
 
   const gridClassName = `grid ${gridColsMap[columnas] || 'grid-cols-6'} ${espaciado} p-1 `;
@@ -63,10 +87,7 @@ export default function ProductosPager({ elementos, columnas = 6, filas = 3, esp
             // Formateamos el precio para que se vea bien
             numero={`S/ ${producto.numero}`}
             nombre={producto.nombre}
-            onClick={() => {
-              console.log("Producto seleccionado:", producto);
-              // Aquí irá la lógica para añadir el producto a la lista
-            }}
+            onClick={() => handleProductoClick(producto)}
           />
         ))}
         

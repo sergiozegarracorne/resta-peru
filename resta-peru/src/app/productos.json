@@ -2,149 +2,247 @@
     {
       "numero": "1",
       "nombre": "cafe con leche",
-      "seccion": "1"
+      "seccion": "1",
+      "precio": 42.3
     },
     {
-        "numero": "2",
-        "nombre": "cafe con canela",
-        "seccion": "1"
-      },
-      {
-        "numero": "3",
-        "nombre": "cafe con crema",
-        "seccion": "1"
-        },
-      {
-        "numero": "4",
-        "nombre": "cafe con crema y canela",
-        "seccion": "1"
-
-      },{
-        "numero": "5",
-        "nombre": "cafe con crema y canela",
-        "seccion": "2"
-      },{
-        "numero": "6",
-        "nombre": "cafe con crema y canela",
-        "seccion": "3"
-
-      },{
-        "numero": "7",
-        "nombre": "cafe con crema y canela",
-        "seccion": "3"
-
-      },{
-        "numero": "8",
-        "nombre": "cafe con crema y canela",
-        "seccion": "3"
-
-      },{
-        "numero": "9",
-        "nombre": "cafe con crema y canela",
-        "seccion": "4"
-
-      },{
-        "numero": "10",
-        "nombre": "cafe con crema y canela",
-        "seccion": "5"
-
-      },{
-        "numero": "11",
-        "nombre": "cafe con crema y canela",
-        "seccion": "5"
-
-      },{
-        "numero": "12",
-        "nombre": "sopa del dia",
-        "seccion": "5"
-
-      },{
-        "numero": "13",
-        "nombre": "sopa de fideos",
-        "seccion": "5"
-
-      },{
-        "numero": "14",
-        "nombre": "sopa de verduras",
-        "seccion": "5"
-
-      },{
-        "numero": "15",
-        "nombre": "sopa de cordero",
-        "seccion": "5"
-      }
-      ,{
-        "numero": "16",
-        "nombre": "Ensalada de Yogurt",
-        "seccion": "6"
-      },{
-        "numero": "17",
-        "nombre": "Ensalada de Frutas",
-        "seccion": "6"
-
-      },{
-        "numero": "18",
-        "nombre": "Ensalada de Verduras",
-        "seccion": "6"
-      },{
-        "numero": "19",
-        "nombre": "Ensalada de Frutas",
-        "seccion": "6"
-
-      },{
-        "numero": "20",
-        "nombre": "Ensalada de papas",
-        "seccion": "6"
-
-      },{
-        "numero": "21",
-        "nombre": "Ensalada de cereales",
-        "seccion": "6"
-      },{
-        "numero":"22",
-        "nombre":"ensalada fresca",
-        "seccion":"6"
-
-      },{
-        "numero":"23",
-        "nombre":"ensalada de rusa",
-        "seccion":"6"
-
-      },{
-        "numero":"24",
-        "nombre":"ensalada mixta",
-        "seccion":"6"
-      },{
-        "numero": "25",
-        "nombre": "Ensalada de Verduras",
-        "seccion": "6"
-      },{
-        "numero": "26",
-        "nombre": "Ensalada de Frutas",
-        "seccion": "6"
-
-      },{
-        "numero": "27",
-        "nombre": "Ensalada de papas",
-        "seccion": "6"
-
-      },{
-        "numero": "28",
-        "nombre": "Ensalada de cereales",
-        "seccion": "6"
-      },{
-        "numero":"29",
-        "nombre":"ensalada fresca",
-        "seccion":"6"
-
-      },{
-        "numero":"30",
-        "nombre":"ensalada de rusa",
-        "seccion":"6"
-
-      },{
-        "numero":"31",
-        "nombre":"ensalada mixta",
-        "seccion":"6"
-      }
+      "numero": "2",
+      "nombre": "cafe con canela",
+      "seccion": "1",
+      "precio": 33.2
+    },
+    {
+      "numero": "3",
+      "nombre": "cafe con crema",
+      "seccion": "1",
+      "precio": 23.8
+    },
+    {
+      "numero": "4",
+      "nombre": "cafe con crema y canela",
+      "seccion": "1",
+      "precio": 37.1
+    },
+    {
+      "numero": "5",
+      "nombre": "cafe con crema y canela",
+      "seccion": "2",
+      "precio": 58.4
+    },
+    {
+      "numero": "6",
+      "nombre": "cafe con crema y canela",
+      "seccion": "3",
+      "precio": 41.7
+    },
+    {
+      "numero": "7",
+      "nombre": "cafe con crema y canela",
+      "seccion": "3",
+      "precio": 27.2
+    },
+    {
+      "numero": "8",
+      "nombre": "cafe con crema y canela",
+      "seccion": "3",
+      "precio": 54.8
+    },
+    {
+      "numero": "9",
+      "nombre": "cafe con crema y canela",
+      "seccion": "4",
+      "precio": 14.9
+    },
+    {
+      "numero": "10",
+      "nombre": "cafe con crema y canela",
+      "seccion": "5",
+      "precio": 20.2
+    },
+    {
+      "numero": "11",
+      "nombre": "cafe con crema y canela",
+      "seccion": "5",
+      "precio": 30.6
+    },
+    {
+      "numero": "12",
+      "nombre": "sopa del dia",
+      "seccion": "5",
+      "precio": 59.9
+    },
+    {
+      "numero": "13",
+      "nombre": "sopa de fideos",
+      "seccion": "5",
+      "precio": 15.7
+    },
+    {
+      "numero": "14",
+      "nombre": "sopa de verduras",
+      "seccion": "5",
+      "precio": 28.3
+    },
+    {
+      "numero": "15",
+      "nombre": "sopa de cordero",
+      "seccion": "5",
+      "precio": 45.2
+    },
+    {
+      "numero": "16",
+      "nombre": "Ensalada de Yogurt",
+      "seccion": "6",
+      "precio": 19.6
+    },
+    {
+      "numero": "17",
+      "nombre": "Ensalada de Frutas",
+      "seccion": "6",
+      "precio": 27.9
+    },
+    {
+      "numero": "18",
+      "nombre": "Ensalada de Verduras",
+      "seccion": "6",
+      "precio": 35.4
+    },
+    {
+      "numero": "19",
+      "nombre": "Ensalada de Frutas",
+      "seccion": "6",
+      "precio": 44.8
+    },
+    {
+      "numero": "20",
+      "nombre": "Ensalada de papas",
+      "seccion": "6",
+      "precio": 31.5
+    },
+    {
+      "numero": "21",
+      "nombre": "Ensalada de cereales",
+      "seccion": "6",
+      "precio": 17.2
+    },
+    {
+      "numero": "22",
+      "nombre": "ensalada fresca",
+      "seccion": "6",
+      "precio": 38.9
+    },
+    {
+      "numero": "23",
+      "nombre": "ensalada de rusa",
+      "seccion": "6",
+      "precio": 49.4
+    },
+    {
+      "numero": "24",
+      "nombre": "ensalada mixta",
+      "seccion": "6",
+      "precio": 13.8
+    },
+    {
+      "numero": "25",
+      "nombre": "Ensalada de Verduras",
+      "seccion": "6",
+      "precio": 36.6
+    },
+    {
+      "numero": "26",
+      "nombre": "Ensalada de Frutas",
+      "seccion": "6",
+      "precio": 25.3
+    },
+    {
+      "numero": "27",
+      "nombre": "Ensalada de papas",
+      "seccion": "6",
+      "precio": 58.1
+    },
+    {
+      "numero": "28",
+      "nombre": "Ensalada de cereales",
+      "seccion": "6",
+      "precio": 48.7
+    },
+    {
+      "numero": "29",
+      "nombre": "ensalada fresca",
+      "seccion": "6",
+      "precio": 23.0
+    },
+    {
+      "numero": "30",
+      "nombre": "ensalada de rusa",
+      "seccion": "6",
+      "precio": 52.4
+    },
+    {
+      "numero": "31",
+      "nombre": "ensalada mixta",
+      "seccion": "6",
+      "precio": 17.9
+    },
+    {
+      "numero": "32",
+      "nombre": "switch ensalada mixta",
+      "seccion": "11",
+      "precio": 46.7
+    },
+    {
+      "numero": "33",
+      "nombre": "switch ensalada de frutas",
+      "seccion": "11",
+      "precio": 54.1
+    },
+    {
+      "numero": "34",
+      "nombre": "switch ensalada de verduras",
+      "seccion": "11",
+      "precio": 11.6
+    },
+    {
+      "numero": "35",
+      "nombre": "switch ensalada de cereales",
+      "seccion": "11",
+      "precio": 29.4
+    },
+    {
+      "numero": "36",
+      "nombre": "switch ensalada de papas",
+      "seccion": "11",
+      "precio": 58.7
+    },
+    {
+      "numero": "37",
+      "nombre": "PARA LLEVAR papas",
+      "seccion": "17",
+      "precio": 27.5
+    },
+    {
+      "numero": "38",
+      "nombre": "PARA LLEVAR cereales",
+      "seccion": "17",
+      "precio": 22.2
+    },
+    {
+      "numero": "39",
+      "nombre": "PARA LLEVAR verduras",
+      "seccion": "17",
+      "precio": 56.9
+    },
+    {
+      "numero": "40",
+      "nombre": "PARA LLEVAR frutas",
+      "seccion": "17",
+      "precio": 40.3
+    },
+    {
+      "numero": "41",
+      "nombre": "PARA LLEVAR ensaladas",
+      "seccion": "17",
+      "precio": 35.8
+    }
 ]

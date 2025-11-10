@@ -1,6 +1,6 @@
 // SeccionesPager.tsx
 "use client";
-import { useMemo, useState, useCallback, useEffect } from "react";
+import { useMemo, useState, useCallback, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import SeccionBoton from "@/componentsUI/SeccionBoton";
 
@@ -47,6 +47,7 @@ export default function SeccionesPager({ elementos, columnas = 6, filas = 2, esp
   const elementosPorPaginaCompleta = espaciosPorPagina - botonesNavPorPagina;
 
   const paginasTotales = Math.max(1, Math.ceil(elementos.length / elementosPorPaginaCompleta));
+  
   const [pagina, setPagina] = useState(0);
 
   const elementosDePagina = useMemo(
@@ -59,21 +60,41 @@ export default function SeccionesPager({ elementos, columnas = 6, filas = 2, esp
   );
 
  
-
   const irAPaginaAnterior = useCallback(() => setPagina(p => Math.max(0, p - 1)), []);
+  
+  
   const irAPaginaSiguiente = useCallback(() => {
     setPagina(p => {
       const nextPage = Math.min(paginasTotales - 1, p + 1);
-      // Si la página realmente cambia, seleccionamos el primer elemento de la siguiente página.
+
       if (nextPage !== p) {
         const inicioSiguientePagina = nextPage * elementosPorPaginaCompleta;
-        onSeccionClick(elementos[inicioSiguientePagina]);
+        console.log(inicioSiguientePagina);
+        
+        const primerElemento = elementos[inicioSiguientePagina];
+        if (primerElemento) {
+          setTimeout(() => onSeccionClick(primerElemento), 0);
+        }
       }
       return nextPage;
     });
-  }, [paginasTotales, elementos, elementosPorPaginaCompleta, onSeccionClick]);
-  const irAInicio = useCallback(() => setPagina(0), []);
-
+  }, [paginasTotales, elementosPorPaginaCompleta, elementos, onSeccionClick]);
+  
+  
+  
+  const irAInicio = useCallback(() => {
+    setPagina(0);
+    const primerElemento = elementos[0];
+    console.log(primerElemento);
+    
+    if (primerElemento) {
+      setTimeout(() => onSeccionClick(primerElemento), 0);
+    }
+  
+  }, []);
+  
+  // Función vacía para los botones de relleno
+  const noOp = () => {};
   // Determinamos qué botones de navegación mostrar
 
   const mostrarSiguiente = pagina < paginasTotales - 1;
@@ -132,7 +153,7 @@ export default function SeccionesPager({ elementos, columnas = 6, filas = 2, esp
               );
           }
           return (
-            <SeccionBoton key={`empty-${i}`} numero="X" nombre="x" onClick={irAPaginaSiguiente} />
+            <SeccionBoton key={`empty-${i}`} numero="" nombre="" onClick={noOp} style={{ visibility: 'hidden' }} />
           );
         })}
       </div>
